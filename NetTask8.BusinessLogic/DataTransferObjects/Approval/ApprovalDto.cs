@@ -12,5 +12,6 @@ namespace NetTask8.BusinessLogic.DataTransferObjects.Approval
         public string ApproverName { get; set; }
         public int DecisionValue { get; set; }
         public DateTime CreatedAt { get; set; }
+        public int EmployeeId { get; set; }
     }
 }

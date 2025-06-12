@@ -1,15 +1,16 @@
 ﻿@using NetTask8.Presentation.ViewModels
 @model LoginViewModel
 
-<form asp-action="Login" method="post">
+<form method="post" asp-action="Login">
     <div>
-        <label asp-for="Username"></label>
-        <input asp-for="Username" />
+        <label>Username</label>
+        <input name="username" />
     </div>
     <div>
-        <label asp-for="Password"></label>
-        <input asp-for="Password" type="password" />
+        <label>Password</label>
+        <input name="password" type="password" />
     </div>
     <button type="submit">Login</button>
 </form>
+
 

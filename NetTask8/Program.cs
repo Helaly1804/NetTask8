@@ -3,6 +3,7 @@ using NetTask8.BusinessLogic.Profiles;
 using NetTask8.BusinessLogic.Services;
 using NetTask8.DataAccess.Data.Context;
 using NetTask8.DataAccess.Repositories.Approvals;
+using NetTask8.DataAccess.Repositories.Employees;
 using NetTask8.DataAccess.Repositories.File;
 
 namespace NetTask8
@@ -25,6 +26,7 @@ namespace NetTask8
             builder.Services.AddScoped<IApprovalRepository, ApprovalRepository>();
             builder.Services.AddScoped<IFileService, FileService>();           
             builder.Services.AddScoped<IApprovalService, ApprovalService>();
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfiles()));
             builder.Services.AddSession();
             var app = builder.Build();

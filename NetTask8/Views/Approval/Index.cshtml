@@ -38,12 +38,14 @@
 <form asp-action="Approve" method="post">
     <input type="hidden" name="fileId" value="@ViewBag.FileId" />
 
-    <label>القرار:</label>
-    <select name="decisionValue">
-        <option value="1">موافقة</option>
-        <option value="0">رفض</option>
+    <!-- ابعت الـ EmployeeId من السيشن أو Hidden Field -->
+    <input type="hidden" name="employeeId" value="@Context.Session.GetInt32("EmployeeId")" />
+
+    <!-- Decision value: 1 = approve, 0 = reject (مثال) -->
+    <select name="decisionValue" class="form-control" required>
+        <option value="1">Approve</option>
+        <option value="0">Reject</option>
     </select>
 
-    <button type="submit">اعتماد</button>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
 </form>
-

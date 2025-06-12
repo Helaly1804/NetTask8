@@ -16,5 +16,6 @@ namespace NetTask8.DataAccess.Repositories.File
         Task<FileField?> GetByIdAsync(int id);
         Task SaveChangesAsync();
         Task UpdateStatusAsync(int fileId, FileStatus newStatus);
+
     }
 }

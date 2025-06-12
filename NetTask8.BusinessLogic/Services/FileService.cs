@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using NetTask8.BusinessLogic.DataTransferObjects.File;
 using NetTask8.DataAccess.Models;
-using NetTask8.DataAccess.Repositories.File;
+using NetTask8.DataAccess.Repositories.File.Employee;
 using System;
 using System.Collections.Generic;
 using System.Linq;

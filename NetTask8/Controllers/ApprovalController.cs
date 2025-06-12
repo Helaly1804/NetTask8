@@ -29,11 +29,9 @@ namespace NetTask8.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Approve(int fileId, int decisionValue)
+        public async Task<IActionResult> Approve(int fileId, int employeeId, int decisionValue)
         {
             var role = HttpContext.Session.GetString("Role");
-            var approverName = HttpContext.Session.GetString("Username");
-
             if (role != "Employee2" && role != "Employee3")
             {
                 return RedirectToAction("Login", "Auth");
@@ -41,22 +39,15 @@ namespace NetTask8.Presentation.Controllers
 
             var dto = new ApprovalDto
             {
-                ApproverName = approverName,
+                EmployeeId = employeeId,
                 DecisionValue = decisionValue,
                 CreatedAt = DateTime.Now
             };
 
-            try
-            {
-                await _approvalService.AddApprovalAsync(fileId, dto);
-            }
-            catch (InvalidOperationException ex)
-            {
-                TempData["Error"] = ex.Message;
-            }
-
+            await _approvalService.AddApprovalAsync(fileId, dto);
             return RedirectToAction("Index", new { fileId });
         }
+
     }
 
 }
