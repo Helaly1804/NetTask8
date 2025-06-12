@@ -34,6 +34,11 @@ namespace NetTask8.DataAccess.Repositories.Employees
             await _db.Employees.AddAsync(employee);
             await _db.SaveChangesAsync();
         }
+
+        public async Task<Employee?> GetByUsernameAsync(string username)
+        {
+            return await _db.Employees.FirstOrDefaultAsync(e => e.Username == username);
+        }
     }
 }
 

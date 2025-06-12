@@ -3,12 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using NetTask8.BusinessLogic.DataTransferObjects.Employee;
 using NetTask8.DataAccess.Data.Context;
 using NetTask8.DataAccess.Models;
+using NetTask8.DataAccess.Repositories.Employees;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace NetTask8.BusinessLogic.Services
 {
-    public class EmployeeService(ApplicationDbContext dbContext, IMapper mapper) : IEmployeeService
+    public class EmployeeService(ApplicationDbContext dbContext, IMapper mapper, IEmployeeRepository employeeRepository) : IEmployeeService
     {
         public async Task<EmployeeDto?> LoginAsync(string username, string password)
         {
@@ -33,16 +34,15 @@ namespace NetTask8.BusinessLogic.Services
             var hash = sha.ComputeHash(bytes);
             return Convert.ToBase64String(hash);
         }
-        public async Task<Employee?> ValidateLoginAsync(string username, string password)
+        public async Task<EmployeeDto?> ValidateLoginAsync(string username, string password)
         {
-            var employee = await dbContext.Employees
-                .FirstOrDefaultAsync(e => e.Username == username);
+            var employee = await employeeRepository.GetByUsernameAsync(username);
+            if (employee == null || employee.PasswordHash != password)
+                return null;
 
-            if (employee == null) return null;
-
-            bool passwordMatch = employee.PasswordHash == password; // Simple for now
-            return passwordMatch ? employee : null;
+            return mapper.Map<EmployeeDto>(employee);
         }
+
 
     }
 }

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace NetTask8.BusinessLogic.Services
 {
-    public class ApprovalService(IApprovalRepository _approvalRepository, IFileRepository _fileRepository, IMapper _mapper,EmployeeRepository _employeeRepository)
+    public class ApprovalService(IApprovalRepository _approvalRepository, IFileRepository _fileRepository, IMapper _mapper,IEmployeeRepository _employeeRepository)
     : IApprovalService
     {
         public async Task<ApprovalDto> AddApprovalAsync(int fileId, ApprovalDto dto)
