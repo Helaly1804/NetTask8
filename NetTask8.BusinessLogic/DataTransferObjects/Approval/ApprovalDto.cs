@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NetTask8.DataAccess.Models
+namespace NetTask8.BusinessLogic.DataTransferObjects.Approval
 {
-    public class Approval
+    public class ApprovalDto
     {
         public int Id { get; set; }
-        public int? FileFieldId { get; set; }
-        public virtual FileField? FileField { get; set; }
         public string ApproverName { get; set; }
         public int DecisionValue { get; set; }
         public DateTime CreatedAt { get; set; }

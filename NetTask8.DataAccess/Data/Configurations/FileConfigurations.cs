@@ -13,6 +13,9 @@ namespace NetTask8.DataAccess.Data.Configurations
     {
         public new void Configure(EntityTypeBuilder<FileField> builder)
         {
+            builder.HasOne(f => f.Employee)
+                .WithMany(e => e.Files)
+                .HasForeignKey(e => e.SubmittedById);
             base.Configure(builder);
         }
     }

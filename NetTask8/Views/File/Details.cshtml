@@ -1,0 +1,35 @@
+﻿@using NetTask8.BusinessLogic.DataTransferObjects.Approval
+@model NetTask8.BusinessLogic.DataTransferObjects.File.DetailedFileDto
+
+@{
+    ViewData["Title"] = "File Details";
+}
+
+<h4>الاعتمادات على الملف</h4>
+
+@if (ViewBag.Approvals != null && ((IEnumerable<ApprovalDto>)ViewBag.Approvals).Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>الموظف</th>
+                <th>القرار</th>
+                <th>تاريخ الاعتماد</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var approval in (IEnumerable<ApprovalDto>)ViewBag.Approvals)
+            {
+                <tr>
+                    <td>@approval.ApproverName</td>
+                    <td>@(approval.DecisionValue == 1 ? "موافقة" : "رفض")</td>
+                    <td>@approval.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>لا يوجد اعتماد بعد على هذا الملف.</p>
+}

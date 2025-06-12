@@ -1,8 +1,11 @@
+using NetTask8.Presentation.ViewModels;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using NetTask8.DataAccess.Models;
 
-namespace NetTask8.Controllers
+
+
+namespace NetTask8.Presentation.Controllers
 {
     public class HomeController : Controller
     {

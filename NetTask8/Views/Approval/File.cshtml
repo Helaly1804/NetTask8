@@ -1,0 +1,30 @@
+﻿@model IEnumerable<NetTask8.BusinessLogic.DataTransferObjects.Approval.ApprovalDto>
+@{
+    ViewData["Title"] = "Approvals";
+    var fileId = ViewBag.FileId;
+}
+
+<h2>Approvals for File @fileId</h2>
+
+<a class="btn btn-primary mb-3" href="@Url.Action("Add", "Approval", new { fileId })">Add New Approval</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Approver Name</th>
+            <th>Decision</th>
+            <th>Created At</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var approval in Model)
+        {
+            <tr>
+                <td>@approval.ApproverName</td>
+                <td>@(approval.DecisionValue == 1 ? "Approved" : "Rejected")</td>
+                <td>@approval.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -15,8 +15,8 @@ namespace NetTask8.DataAccess.Data.Configurations
         {
             builder.HasKey(d => d.Id);
             builder.HasOne(d => d.FileField)
-                   .WithOne(f => f.Approval)
-                   .HasForeignKey<Approval>(d => d.FileFieldId)
+                   .WithMany(f => f.Approvals)
+                   .HasForeignKey(d => d.FileFieldId)
                    .OnDelete(DeleteBehavior.SetNull);
             builder.Property(d => d.CreatedAt).HasDefaultValueSql("getdate()");
         }

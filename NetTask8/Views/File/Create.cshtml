@@ -1,0 +1,49 @@
+﻿@model NetTask8.BusinessLogic.DataTransferObjects.File.CreatedFileDto
+
+@{
+    ViewData["Title"] = "Add File";
+}
+
+<h2 class="my-3">Create File</h2>
+
+<form asp-action="Create" method="post" class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Subject" class="form-label"></label>
+        <input asp-for="Subject" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="SubmittedById" class="form-label"></label>
+        <input asp-for="SubmittedById" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Status" class="form-label"></label>
+        <input asp-for="Status" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="ResponsibleEmployee" class="form-label"></label>
+        <input asp-for="ResponsibleEmployee" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="FilePath" class="form-label"></label>
+        <input asp-for="FilePath" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="FileDate" class="form-label"></label>
+        <input asp-for="FileDate" type="date" class="form-control" />
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+</form>
+

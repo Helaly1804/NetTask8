@@ -1,0 +1,49 @@
+﻿@model IEnumerable<NetTask8.BusinessLogic.DataTransferObjects.Approval.ApprovalDto>
+@{
+    ViewData["Title"] = "Approvals";
+    var fileId = ViewBag.FileId;
+}
+
+<h2>Approvals</h2>
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Approver</th>
+            <th>Decision</th>
+            <th>Created At</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var approval in Model)
+        {
+            <tr>
+                <td>@approval.ApproverName</td>
+                <td>
+                    @(approval.DecisionValue == 1 ? "Approved" :
+                        approval.DecisionValue == 0 ? "Rejected" : "Unknown")
+                </td>
+                <td>@approval.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<hr />
+
+<h3>Add Your Approval</h3>
+<form asp-action="Approve" method="post">
+    <input type="hidden" name="fileId" value="@ViewBag.FileId" />
+
+    <label>القرار:</label>
+    <select name="decisionValue">
+        <option value="1">موافقة</option>
+        <option value="0">رفض</option>
+    </select>
+
+    <button type="submit">اعتماد</button>
+</form>
+

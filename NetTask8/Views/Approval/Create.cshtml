@@ -1,0 +1,25 @@
+﻿@model NetTask8.BusinessLogic.DataTransferObjects.Approval.ApprovalDto
+@{
+    ViewData["Title"] = "Add Approval";
+    int fileId = (int)ViewBag.FileId;
+}
+
+<h2>Add Approval</h2>
+
+<form asp-action="Create" asp-route-fileId="@fileId" method="post">
+    <div class="form-group mb-3">
+        <label asp-for="DecisionValue" class="form-label">Decision</label>
+        <select asp-for="DecisionValue" class="form-control">
+            <option value="1">Approve</option>
+            <option value="0">Reject</option>
+        </select>
+        <span asp-validation-for="DecisionValue" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+    <a asp-action="Index" asp-route-fileId="@fileId" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

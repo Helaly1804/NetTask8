@@ -13,6 +13,8 @@ namespace NetTask8.DataAccess.Data.Configurations
     {
         public new void Configure(EntityTypeBuilder<Employee> builder)
         {
+            builder.Property(e => e.Role)
+                   .HasConversion<string>();
             base.Configure(builder);
         }
     }

@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using NetTask8.BusinessLogic.Profiles;
+using NetTask8.BusinessLogic.Services;
 using NetTask8.DataAccess.Data.Context;
+using NetTask8.DataAccess.Repositories.Approvals;
+using NetTask8.DataAccess.Repositories.File;
 
 namespace NetTask8
 {
@@ -17,6 +21,12 @@ namespace NetTask8
                 options.UseLazyLoadingProxies();
             }
             );
+            builder.Services.AddScoped<IFileRepository, FileRepository>();
+            builder.Services.AddScoped<IApprovalRepository, ApprovalRepository>();
+            builder.Services.AddScoped<IFileService, FileService>();           
+            builder.Services.AddScoped<IApprovalService, ApprovalService>();
+            builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfiles()));
+            builder.Services.AddSession();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -33,7 +43,7 @@ namespace NetTask8
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseSession();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

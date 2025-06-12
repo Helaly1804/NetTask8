@@ -1,0 +1,36 @@
+﻿@model IEnumerable<NetTask8.BusinessLogic.DataTransferObjects.File.DetailedFileDto>
+
+@{
+    ViewData["Title"] = "All Files";
+}
+
+<h2 class="my-3">All Files</h2>
+
+<a href="/File/Create" class="btn btn-primary mb-3">Add New File</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Subject</th>
+            <th>Employee</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var file in Model)
+        {
+            <tr>
+                <td>@file.Name</td>
+                <td>@file.Subject</td>
+                <td>@file.EmployeeName</td>
+                <td>@file.Status</td>
+                <td>@file.FileDate.ToShortDateString()</td>
+                <td><a href="/File/Details/@file.Id" class="btn btn-info btn-sm">View</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
